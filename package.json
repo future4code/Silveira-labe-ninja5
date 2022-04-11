@@ -12,10 +12,10 @@
     "react-dom": "^16.13.1",
     "react-jss": "8.0.0",
     "react-scripts": "^3.4.3",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.3.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
