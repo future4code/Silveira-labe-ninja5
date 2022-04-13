@@ -12,6 +12,9 @@ export default class App extends React.Component {
 	state = {
 		telaAtual:"Home"
 	};
+	componentDidMount(){
+		console.log(`Home`)
+	}
 	escolherTela = () => {
 		switch (this.state.telaAtual) {
 		  case "Home":
