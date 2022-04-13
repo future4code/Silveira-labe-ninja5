@@ -6,6 +6,7 @@ import FormularioCadastro from'./pages/FormularioCadastro'
 import TelaCarrinho from'./pages/TelaCarrinho'
 import TelaServicos from'./pages/TelaServicos'
 import TelaServicosDetalhe from'./pages/TelaServicosDetalhe'
+import Footer from './components/Footer/Footer'
 
 
 export default class App extends React.Component {
@@ -37,6 +38,9 @@ export default class App extends React.Component {
 			<div>
 				<Header mudarTela={this.mudarTela}/>
 				{this.escolherTela()}
+
+				<Footer mudarTela={this.mudarTela}/>
+
 			</div>
 		)
 	}
