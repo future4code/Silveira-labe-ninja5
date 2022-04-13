@@ -23,6 +23,10 @@ export default class TelaServicos extends React.Component {
 
   state = {
     servicos: [],
+    minValue: "",
+    maxValue: "",
+    tituloValue: "",
+    semOrdenacao: "",
   }
 
   componentDidMount() {
@@ -38,9 +42,15 @@ export default class TelaServicos extends React.Component {
         "Não foi possível carregar as informações solicitadas. Tente novamente mais tarde!"
       );
     }
-  };
+  }
 
-  render() {
+  onChangeMinValue = (event) => this.setState({minValue: event.target.value});
+  onChangeMaxValue = (event) => this.setState({maxValue: event.target.value});
+  onChangeTituloValue = (event) => this.setState({tituloValue: event.target.value});
+  onChangeOrdenacaoValue = (event) => this.setState({semOrdenacaoValue: event.target.value});
+
+  render(){
+
     const listaServicos = this.state.servicos.map((servico) => {
       return (
         <CardServico
@@ -53,10 +63,21 @@ export default class TelaServicos extends React.Component {
       );
     });
 
-    return (
-      <>
-        <ContainerGrid>{listaServicos}</ContainerGrid>
-      </>
-    );
+    return(
+        <div>
+            <Filtro>
+                minValue={this.state.minValue}
+                maxValue={this.state.maxValue}
+                nameValue={this.state.tituloValue}
+                semOrdenacao={this.state.semOrdenacao}
+                onChangeMinValue={this.onChangeMinValue}
+                onChangeMaxValue={this.onChangeMaxValue}
+                onChangeNameValue={this.onChangeTituloValue}
+                onChangeOrdenacaoValue={this.onChangeOrdenacaoValue}
+            </Filtro>
+
+            <ContainerGrid>{listaServicos}</ContainerGrid>
+        </div>
+    )
   }
 }

@@ -1,12 +1,11 @@
-import React from 'react'
-import Header from './components/Header/Header'
-import styled from 'styled-components'
-import Main from './components/Main/Main'
-import FormularioCadastro from'./pages/FormularioCadastro'
-import TelaCarrinho from'./pages/TelaCarrinho'
-import TelaServicos from'./pages/TelaServicos'
-import TelaServicosDetalhe from'./pages/TelaServicosDetalhe'
-
+import React from "react";
+import Header from "./components/Header/Header";
+import Main from "./components/Main/Main";
+import FormularioCadastro from "./pages/FormularioCadastro";
+import TelaCarrinho from "./pages/TelaCarrinho";
+import TelaServicos from "./pages/TelaServicos";
+import TelaServicosDetalhe from "./pages/TelaServicosDetalhe";
+import Footer from "./components/Footer/Footer";
 
 export default class App extends React.Component {
   state = {
@@ -54,9 +53,8 @@ export default class App extends React.Component {
       <div>
         <Header mudarTela={this.mudarTela} />
         {this.escolherTela()}
+        <Footer mudarTela={this.mudarTela} />
       </div>
     );
   }
 }
-	
-
