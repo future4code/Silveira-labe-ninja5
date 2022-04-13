@@ -9,37 +9,54 @@ import TelaServicosDetalhe from'./pages/TelaServicosDetalhe'
 
 
 export default class App extends React.Component {
-	state = {
-		telaAtual:"Home"
-	};
-	escolherTela = () => {
-		switch (this.state.telaAtual) {
-		  case "Home":
-			return <Main mudarTela={this.mudarTela}/>;
-		  case "FormularioCadastro":
-			return <FormularioCadastro mudarTela={this.mudarTela}/>;
-		  case "TelaServicos":
-			return <TelaServicos mudarTela={this.mudarTela}/>;
-			case "TelaServicosDetalhe":
-			return <TelaServicosDetalhe mudarTela={this.mudarTela}/>;	
-			case "TelaCarrinho":
-			return <TelaCarrinho mudarTela={this.mudarTela}/>;	
-		  default:
-			return <Main mudarTela={this.mudarTela}/>;
-		}
-	  };
+  state = {
+    telaAtual: "Home",
+    idServico: "",
+  };
 
-	mudarTela = (nomeTela) => {
-		this.setState({telaAtual:nomeTela})
-	}
-	render(){
-		return(
-			<div>
-				<Header mudarTela={this.mudarTela}/>
-				{this.escolherTela()}
-			</div>
-		)
-	}
+  escolherTela = () => {
+    switch (this.state.telaAtual) {
+      case "Home":
+        return <Main mudarTela={this.mudarTela} />;
+      case "FormularioCadastro":
+        return <FormularioCadastro mudarTela={this.mudarTela} />;
+      case "TelaServicos":
+        return (
+          <TelaServicos
+            mudarTela={this.mudarTela}
+            irParaServicosDetalhe={this.irParaServicosDetalhe}
+          />
+        );
+      case "TelaServicosDetalhe":
+        return (
+          <TelaServicosDetalhe
+            mudarTela={this.mudarTela}
+            idServico={this.state.idServico}
+          />
+        );
+      case "TelaCarrinho":
+        return <TelaCarrinho mudarTela={this.mudarTela} />;
+      default:
+        return <Main mudarTela={this.mudarTela} />;
+    }
+  };
+
+  mudarTela = (nomeTela) => {
+    this.setState({ telaAtual: nomeTela });
+  };
+
+  irParaServicosDetalhe = (id, nomeTela) => {
+    this.setState({ idServico: id, telaAtual: nomeTela });
+  };
+
+  render() {
+    return (
+      <div>
+        <Header mudarTela={this.mudarTela} />
+        {this.escolherTela()}
+      </div>
+    );
+  }
 }
 	
 
