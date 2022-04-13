@@ -8,6 +8,8 @@ import { HEADERS } from "../constantes/headers";
 import CardServico from '../components/CardServico/CardServico';
 import Filtro from '../components/Filtro/Filtro'
 
+import Button from '@material-ui/core/Button';
+
 
 const ContainerGrid = styled.div`
   box-sizing: border-box;
@@ -52,7 +54,8 @@ export default class TelaServicos extends React.Component {
 
   render(){
 
-    const listaServicos = this.state.servicos.map((servico) => {
+    const listaServicos = this.state.servicos
+    .map((servico) => {
       return (
         <CardServico
           key={servico.id}
@@ -78,6 +81,7 @@ export default class TelaServicos extends React.Component {
             </Filtro>
 
             <ContainerGrid>{listaServicos}</ContainerGrid>
+
         </div>
     )
   }
