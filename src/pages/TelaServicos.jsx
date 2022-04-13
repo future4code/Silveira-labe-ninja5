@@ -6,6 +6,7 @@ import { BASE_URL } from '../constantes/urls';
 import { HEADERS } from "../constantes/headers";
 
 import CardServico from '../components/CardServico/CardServico';
+import Filtro from '../components/Filtro/Filtro'
 
 
 const ContainerGrid = styled.div`

@@ -10,7 +10,7 @@ const ContainerFiltro = styled.div`
     margin: 32px 24px 0px;
 `
 
-export class Filtro extends Component {
+export default class Filtro extends Component {
   render() {
     return (
       <ContainerFiltro>
