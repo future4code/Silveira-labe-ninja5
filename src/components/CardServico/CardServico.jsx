@@ -30,7 +30,7 @@ export default class CardServico extends Component {
         <Paragrafo>Preço: <span>R${this.props.preco.toFixed(2)}</span></Paragrafo>
         <Paragrafo>Prazo: <span>{(new Date(this.props.data)).toLocaleDateString()}</span></Paragrafo>
         <button onClick={this.props.onClick}>Ver detalhes</button>
-        <button>Adicionar no Carrinho</button>
+        <button onClick={()=> this.props.key}>Adicionar no Carrinho</button>
       </Container>
     )
   }
