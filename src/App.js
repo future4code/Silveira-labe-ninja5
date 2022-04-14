@@ -11,6 +11,10 @@ export default class App extends React.Component {
   state = {
     telaAtual: "Home",
     idServico: "",
+
+    servicos: [],
+    carrinho: []
+
     inputPagamento: [],
     check: false
 
@@ -26,7 +30,9 @@ export default class App extends React.Component {
         return (
           <TelaServicos
             mudarTela={this.mudarTela}
+            adicionarNoCarrinho={this.adicionarCarrinho}
             irParaServicosDetalhe={this.irParaServicosDetalhe}
+            pegarServicos={this.pegarServicos}
           />
         );
       case "TelaServicosDetalhe":
@@ -37,7 +43,14 @@ export default class App extends React.Component {
           />
         );
       case "TelaCarrinho":
-        return <TelaCarrinho mudarTela={this.mudarTela} />;
+        return <TelaCarrinho 
+            servicos={this.state.servicos}
+            mudarTela={this.mudarTela} 
+            id={this.state.idServico}
+            carrinho ={ this.state.carrinho}
+            removerServico ={this.removerServico}
+            limparCarrinho = {this.limparCarrinho}
+          />;
       default:
         return <Main mudarTela={this.mudarTela} />;
     }
@@ -47,9 +60,42 @@ export default class App extends React.Component {
     this.setState({ telaAtual: nomeTela });
   };
 
+  pegarId = (id) => {
+    this.setState({idServico: id})
+  }
+
+  pegarServicos = (servicos) => {
+    this.setState({servicos: servicos})
+  }
+
   irParaServicosDetalhe = (id, nomeTela) => {
     this.setState({ idServico: id, telaAtual: nomeTela });
   };
+
+
+  adicionarCarrinho = (servico) => {
+    const novoCarrinho = [...this.state.carrinho, servico]
+    this.setState({carrinho: novoCarrinho})
+  }
+
+  removerServico = (id) => {
+    const novoCarrinho = this.state.carrinho.filter((servico)=>{
+      return(
+        servico.id !== id 
+      )
+    })
+    this.setState({carrinho: novoCarrinho})
+  }
+
+  limparCarrinho = () =>{
+    this.setState({carrinho: []})
+    
+
+  }
+
+  render() {
+    
+
   onChangePagamentos = (event) =>{
     
     if (!this.state.inputPagamento.includes(event.target.value))
