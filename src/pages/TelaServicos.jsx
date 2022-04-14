@@ -1,15 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import styled from "styled-components";
-
 import { BASE_URL } from '../constantes/urls';
 import { HEADERS } from "../constantes/headers";
-
 import CardServico from '../components/CardServico/CardServico';
 import Filtro from '../components/Filtro/Filtro'
-
-import Button from '@material-ui/core/Button';
-
+// import Button from '@material-ui/core/Button';
 
 const ContainerGrid = styled.div`
   box-sizing: border-box;
@@ -21,15 +17,14 @@ const ContainerGrid = styled.div`
   padding: 20px;
 `;
 
-
 export default class TelaServicos extends React.Component {
 
   state = {
     servicos: [],
-    minValue: "",
-    maxValue: "",
-    tituloValue: "",
-    semOrdenacao: "",
+    minFilter: "",
+    maxFilter: "",
+    titleFilter: "",
+    sort: "CRESCENTE"
   }
 
   componentDidMount() {
@@ -47,42 +42,73 @@ export default class TelaServicos extends React.Component {
     }
   }
 
-  onChangeMinValue = (event) => this.setState({minValue: event.target.value});
-  onChangeMaxValue = (event) => this.setState({maxValue: event.target.value});
-  onChangeTituloValue = (event) => this.setState({tituloValue: event.target.value});
-  onChangeOrdenacaoValue = (event) => this.setState({semOrdenacaoValue: event.target.value});
+  onChangeMinFilter = (event) => this.setState({ minFilter: event.target.value });
+  onChangeMaxFilter = (event) => this.setState({ maxFilter: event.target.value });
+  onChangeTitleFilter = (event) => this.setState({ titleFilter: event.target.value });
+  onChangeSelectFilter = (event) => this.setState({ sort: event.target.value });
 
-  render(){
-
-    const listaServicos = this.state.servicos
-    .map((servico) => {
-      return (
-        <CardServico
-          key={servico.id}
-          nome={servico.title}
-          preco={servico.price}
-          data={servico.dueDate}
-          onClick={()=>{this.props.irParaServicosDetalhe(servico.id,"TelaServicosDetalhe")}}
-        />
-      );
+  filterServices = () => {
+    const servicosFiltradoMin = this.state.servicos.filter((servico) => {
+      return this.state.minFilter ? servico.price >= this.state.minFilter : servico
     });
 
-    return(
-        <div>
-            <Filtro>
-                minValue={this.state.minValue}
-                maxValue={this.state.maxValue}
-                nameValue={this.state.tituloValue}
-                semOrdenacao={this.state.semOrdenacao}
-                onChangeMinValue={this.onChangeMinValue}
-                onChangeMaxValue={this.onChangeMaxValue}
-                onChangeNameValue={this.onChangeTituloValue}
-                onChangeOrdenacaoValue={this.onChangeOrdenacaoValue}
-            </Filtro>
+    const servicosFiltradoMax = servicosFiltradoMin.filter((servico) => {
+      return this.state.maxFilter ? servico.price <= this.state.maxFilter : servico
+    });
 
-            <ContainerGrid>{listaServicos}</ContainerGrid>
+    const servicosFiltradoTitle = servicosFiltradoMax.filter((servico) => {
+      return servico.title.toLowerCase().includes(this.state.titleFilter.toLowerCase())
+    });
 
-        </div>
+    return servicosFiltradoTitle
+
+  }
+
+  render() {
+    const servicosOrdenados = this.state.servicos &&
+      this.state.servicos.sort((a, b) => {
+        return this.state.sort === 'CRESCENTE' ? a.price - b.price :
+          this.state.sort === 'DECRESCENTE' ? b.price - a.price :
+            this.state.sort === 'PRAZO' ? (new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()) :
+              this.state.sort === 'TITULO' ? a.title.toLowerCase().localeCompare(b.title.toLowerCase()) :
+                this.state.sort === 'SEMORDEM' ? a.price : b.price
+      })
+
+    const servicosFiltrados = this.filterServices()
+    console.log(servicosFiltrados)
+
+    const listaServicos = servicosFiltrados &&
+      servicosFiltrados.map((servico) => {
+        return (
+          <CardServico
+            servicos={servicosFiltrados}
+            key={servico.id}
+            nome={servico.title}
+            preco={servico.price}
+            data={servico.dueDate}
+            onClick={() => { this.props.irParaServicosDetalhe(servico.id, "TelaServicosDetalhe") }}
+          />
+        );
+      });
+
+    return (
+      <div>
+        <Filtro
+          minValue={this.state.minFilter}
+          maxValue={this.state.maxFilter}
+          titleValue={this.state.titleFilter}
+          semOrdenacaoValue={this.state.semOrdenacaoFilter}
+          onChangeMinValue={this.onChangeMinFilter}
+          onChangeMaxValue={this.onChangeMaxFilter}
+          onChangeTitleValue={this.onChangeTitleFilter}
+          onChangeSemOrdenacaoValue={this.onChangeSelectFilter}
+        />
+
+        <ContainerGrid >
+          {listaServicos}
+        </ContainerGrid>
+
+      </div>
     )
   }
 }
