@@ -35,7 +35,6 @@ export default class TelaServicos extends React.Component {
     try {
       const res = await axios.get(`${BASE_URL}/jobs`, HEADERS);
       this.setState({ servicos: res.data.jobs });
-      this.props.pegarServicos(this.state.servicos);
     } catch (error) {
       alert(
         "Não foi possível carregar as informações solicitadas. Tente novamente mais tarde!"
@@ -43,21 +42,6 @@ export default class TelaServicos extends React.Component {
     }
   }
 
-  render(){
-
-    const listaServicos = this.state.servicos
-    .map((servico) => {
-      return (
-        <CardServico
-          pegarServico={servico}
-          key={servico.id}
-          nome={servico.title}
-          preco={servico.price}
-          data={servico.dueDate}
-          onClick={()=>{this.props.irParaServicosDetalhe(servico.id,"TelaServicosDetalhe")}}
-          adicionarNoCarrinho={this.props.adicionarNoCarrinho}
-        />
-      );
   onChangeMinFilter = (event) => this.setState({ minFilter: event.target.value });
   onChangeMaxFilter = (event) => this.setState({ maxFilter: event.target.value });
   onChangeTitleFilter = (event) => this.setState({ titleFilter: event.target.value });
@@ -74,7 +58,6 @@ export default class TelaServicos extends React.Component {
 
     const servicosFiltradoTitle = servicosFiltradoMax.filter((servico) => {
       return servico.title.toLowerCase().includes(this.state.titleFilter.toLowerCase())
-
     });
 
     return servicosFiltradoTitle

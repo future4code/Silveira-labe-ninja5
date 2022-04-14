@@ -21,7 +21,6 @@ export default class TelaServicos extends React.Component {
     pagamentos: [],
     prazo: "",
     preco: 0, 
-    tituloServico: ""
   }
 
   componentDidMount(){
