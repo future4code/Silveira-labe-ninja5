@@ -11,6 +11,9 @@ export default class App extends React.Component {
   state = {
     telaAtual: "Home",
     idServico: "",
+    inputPagamento: [],
+    check: false
+
   };
 
   escolherTela = () => {
@@ -18,7 +21,7 @@ export default class App extends React.Component {
       case "Home":
         return <Main mudarTela={this.mudarTela} />;
       case "FormularioCadastro":
-        return <FormularioCadastro mudarTela={this.mudarTela} />;
+        return <FormularioCadastro check={this.state.check} onClickCheck={this.onClickCheck} mudarTela={this.mudarTela} onChangePagamentos={this.onChangePagamentos} inputPagamento={this.state.inputPagamento} />;
       case "TelaServicos":
         return (
           <TelaServicos
@@ -47,8 +50,22 @@ export default class App extends React.Component {
   irParaServicosDetalhe = (id, nomeTela) => {
     this.setState({ idServico: id, telaAtual: nomeTela });
   };
-
+  onChangePagamentos = (event) =>{
+    
+    if (!this.state.inputPagamento.includes(event.target.value))
+    {const newInputPagamento = [...this.state.inputPagamento]
+      newInputPagamento.push(event.target.value)
+      this.setState({inputPagamento: newInputPagamento})
+    }else{
+      const newInputPagamento = this.state.inputPagamento.filter((Pagamento)=> Pagamento !== event.target.value )
+      this.setState({inputPagamento: newInputPagamento})
+    }
+     
+    console.log(event.target.value)
+  }
+  
   render() {
+    console.log(this.state.inputPagamento)
     return (
       <div>
         <Header mudarTela={this.mudarTela} />
