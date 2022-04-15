@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 const Div = styled.div`
     width: 100vw;
     height: 60vh;
@@ -12,9 +13,9 @@ const Div = styled.div`
     
 `
 const H1 = styled.h1`
-    color: #2e2f52;
+    color: #E63946;
     font-size: 35px;
-    border-bottom: 3px solid #b708b7;
+    border-bottom: 3px solid #1D3557;
     border-radius: 5px;
 `
 const P = styled.p`
@@ -23,16 +24,16 @@ const P = styled.p`
     
 `
 const Button = styled.button`
-    background-color: #b708b7;
+    background-color: #457B9D;
     font-size: 18px;
-    color: whitesmoke;
+    color: #F1FAEE;
     margin: 0 5px;
     border-radius: 5px;
 `
 export default class Main extends React.Component {
     render (){
         return (
-            <Div>
+             <Div>
                 <H1>LabeNinjas</H1>
                 <P>O talento certo no momento certo!</P>
                 <div>

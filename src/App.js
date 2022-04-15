@@ -7,6 +7,7 @@ import TelaServicos from "./pages/TelaServicos";
 import TelaServicosDetalhe from "./pages/TelaServicosDetalhe";
 import Footer from "./components/Footer/Footer";
 
+
 export default class App extends React.Component {
   state = {
     telaAtual: "Home",

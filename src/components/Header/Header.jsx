@@ -7,8 +7,8 @@ const Nav = styled.nav`
     justify-content: center;
     align-items: center;
     margin-bottom: 2em;
-    background-color: #d3d3d3;
-    box-shadow: 1px 1px 2px 1px purple;
+    background-color: #1D3557;
+    box-shadow: 1px 1px 2px 1px #E63946;
     
 `
 const Button = styled.button`
@@ -18,23 +18,25 @@ const Button = styled.button`
     margin-right: 1.3em;
     text-decoration: none;
     padding: 5px 20px;
-    border: 2px solid purple;
-    color: purple;
+    border: 2px solid #E63946;
+    color: #E63946;
     text-shadow: grey 0.1em 0.1em 0.2em;
     border-radius: 5px;
+    font-weight: bold;
      
     
 `
 const P = styled.p`
+    font-weight: bold;
     margin-right: 60%;
-    color: purple;
+    color: #E63946;
     font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: whitesmoke;
     padding: 10px 30px;
-    border-top: 2px solid purple;
+    border-top: 2px solid #E63946;
     text-shadow: grey 0.1em 0.1em 0.2em;
     border-radius: 5px;
 

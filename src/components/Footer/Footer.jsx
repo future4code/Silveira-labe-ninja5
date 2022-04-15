@@ -6,9 +6,10 @@ const PgFooter = styled.footer`
     bottom:0;
     left:0;
     width: 100%;
+    text-align: center;
     align-items: center;
-    background-color: #D3D3D3;
-    box-shadow: 1px 1px 2px 1px purple;
+    background-color: #A8DADC;
+    box-shadow: 1px 1px 2px 1px #E63946;
     padding-left: 32px;
 `
 
@@ -16,7 +17,7 @@ export default class Footer extends React.Component {
     render(){
         return(
                  <PgFooter>
-                     <p>LabeNinjas</p>
+                     <p><strong>LabeNinjas</strong></p>
                  </PgFooter>
         )
     }
