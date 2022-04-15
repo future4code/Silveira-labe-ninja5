@@ -2,12 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Nav = styled.nav`
-    width: 100%;
     display:flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 2em;
-    background-color: #d3d3d3;
+    background-color: #D3D3D3;
     box-shadow: 1px 1px 2px 1px purple;
     
 `

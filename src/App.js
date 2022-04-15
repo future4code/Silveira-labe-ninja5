@@ -11,9 +11,8 @@ export default class App extends React.Component {
   state = {
     telaAtual: "Home",
     idServico: "",
-    inputPagamento: [],
-    check: false
-
+    servicos: [],
+    carrinho: []
   };
 
   escolherTela = () => {
@@ -21,12 +20,14 @@ export default class App extends React.Component {
       case "Home":
         return <Main mudarTela={this.mudarTela} />;
       case "FormularioCadastro":
-        return <FormularioCadastro check={this.state.check} onClickCheck={this.onClickCheck} mudarTela={this.mudarTela} onChangePagamentos={this.onChangePagamentos} inputPagamento={this.state.inputPagamento} />;
+        return <FormularioCadastro mudarTela={this.mudarTela} />;
       case "TelaServicos":
         return (
           <TelaServicos
             mudarTela={this.mudarTela}
+            adicionarNoCarrinho={this.adicionarCarrinho}
             irParaServicosDetalhe={this.irParaServicosDetalhe}
+            pegarServicos={this.pegarServicos}
           />
         );
       case "TelaServicosDetalhe":
@@ -37,7 +38,14 @@ export default class App extends React.Component {
           />
         );
       case "TelaCarrinho":
-        return <TelaCarrinho mudarTela={this.mudarTela} />;
+        return <TelaCarrinho 
+            servicos={this.state.servicos}
+            mudarTela={this.mudarTela} 
+            id={this.state.idServico}
+            carrinho ={ this.state.carrinho}
+            removerServico ={this.removerServico}
+            limparCarrinho = {this.limparCarrinho}
+          />;
       default:
         return <Main mudarTela={this.mudarTela} />;
     }
@@ -47,25 +55,40 @@ export default class App extends React.Component {
     this.setState({ telaAtual: nomeTela });
   };
 
+  pegarId = (id) => {
+    this.setState({idServico: id})
+  }
+
+  pegarServicos = (servicos) => {
+    this.setState({servicos: servicos})
+  }
+
   irParaServicosDetalhe = (id, nomeTela) => {
     this.setState({ idServico: id, telaAtual: nomeTela });
   };
-  onChangePagamentos = (event) =>{
-    
-    if (!this.state.inputPagamento.includes(event.target.value))
-    {const newInputPagamento = [...this.state.inputPagamento]
-      newInputPagamento.push(event.target.value)
-      this.setState({inputPagamento: newInputPagamento})
-    }else{
-      const newInputPagamento = this.state.inputPagamento.filter((Pagamento)=> Pagamento !== event.target.value )
-      this.setState({inputPagamento: newInputPagamento})
-    }
-     
-    console.log(event.target.value)
+
+  adicionarCarrinho = (servico) => {
+    const novoCarrinho = [...this.state.carrinho, servico]
+    this.setState({carrinho: novoCarrinho})
   }
-  
+
+  removerServico = (id) => {
+    const novoCarrinho = this.state.carrinho.filter((servico)=>{
+      return(
+        servico.id !== id 
+      )
+    })
+    this.setState({carrinho: novoCarrinho})
+  }
+
+  limparCarrinho = () =>{
+    this.setState({carrinho: []})
+    
+
+  }
+
   render() {
-    console.log(this.state.inputPagamento)
+    
     return (
       <div>
         <Header mudarTela={this.mudarTela} />

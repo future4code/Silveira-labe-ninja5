@@ -18,34 +18,32 @@ export default class Filtro extends Component {
         <label>
           Valor mínimo:
           <input
+            type="number"
             value={this.props.minValue}
             onChange={this.props.onChangeMinValue}
-            min={0}
-            type={"number"}
           />
         </label>
         <label>
-          Valor máximo:
+          Valor máximo: 
           <input
+            type="number"
             value={this.props.maxValue}
             onChange={this.props.onChangeMaxValue}
-            min={0}
-            type={"number"}
           />
         </label>
         <label>
           Busca por nome:
           <input
-            value={this.props.titleValue}
-            onChange={this.props.onChangeTitleValue}
-            type={"text"}
+            type="text"
+            value={this.props.nameValue}
+            onChange={this.props.onChangeNameValue}
           />
         </label>
-        <Ordenacao
-          // type={"text"}
-          value={this.props.semOrdenacaoValue}
-          onChange={this.props.onChangeSemOrdenacaoValue}
-        />
+          <Ordenacao>
+            type="text"
+            value={this.props.semOrdenacaoValue}
+            onChange={this.props.onChangesemOrdenacaoValue}
+          </Ordenacao>
       </ContainerFiltro>
     )
   }
