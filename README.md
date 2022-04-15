@@ -1,6 +1,6 @@
 # Projeto Labe-Ninjas
 
-#Integrantes
+# Integrantes
 - Alessandra Sandeski
 - Brenno Ambrozino
 - Graziela Queiroz
