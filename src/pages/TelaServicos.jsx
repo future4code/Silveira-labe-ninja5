@@ -75,18 +75,19 @@ export default class TelaServicos extends React.Component {
       })
 
     const servicosFiltrados = this.filterServices()
-    console.log(servicosFiltrados)
 
     const listaServicos = servicosFiltrados &&
       servicosFiltrados.map((servico) => {
         return (
           <CardServico
-            servicos={servicosFiltrados}
             key={servico.id}
+            pegarServico={servico}
+            servicos={servicosFiltrados}
             nome={servico.title}
             preco={servico.price}
             data={servico.dueDate}
             onClick={() => { this.props.irParaServicosDetalhe(servico.id, "TelaServicosDetalhe") }}
+            adicionarNoCarrinho={this.props.adicionarNoCarrinho}
           />
         );
       });
@@ -104,9 +105,7 @@ export default class TelaServicos extends React.Component {
           onChangeSemOrdenacaoValue={this.onChangeSelectFilter}
         />
 
-        <ContainerGrid >
-          {listaServicos}
-        </ContainerGrid>
+        <ContainerGrid>{listaServicos}</ContainerGrid>
 
       </div>
     )
