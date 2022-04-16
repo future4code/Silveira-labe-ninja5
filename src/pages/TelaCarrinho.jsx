@@ -17,6 +17,15 @@ const Descricao = styled.div`
   padding: 10px;
   align-items: center;
 `
+const Button = styled.button`
+    background-color: #457B9D;
+    font-size: 18px;
+    color: #F1FAEE;
+    margin: 0 5px;
+    border-radius: 5px;
+`
+     
+    
 
 export default class TelaCarrinho extends React.Component {
   state = {
@@ -48,8 +57,8 @@ export default class TelaCarrinho extends React.Component {
         {listaDeCarrinho}
         <Descricao>
           <p>Valor Total: R${valorTotal.toFixed(2)}</p>
-          <button onClick={this.props.limparCarrinho}>Finalizar Compra</button>
-          <button onClick={()=>this.props.mudarTela('TelaServicos')}>Voltar para a Lista</button>
+          <Button onClick={this.props.limparCarrinho}>Finalizar Compra</Button>
+          <Button onClick={()=>this.props.mudarTela('TelaServicos')}>Voltar para a Lista</Button>
         </Descricao>
       </Div>
     )

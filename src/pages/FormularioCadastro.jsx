@@ -9,6 +9,7 @@ import { InputLabel } from "@material-ui/core";
 // import { NativeSelect } from "@material-ui/core";
 // import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+
 const Div = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,6 +21,18 @@ const Div = styled.div`
 const H1 = styled.h1`
   color: #2e2f52;
 `;
+
+const Input = styled.input`
+   display: flex;
+     
+`
+const Button = styled.button`
+    background-color: #457B9D;
+    font-size: 18px;
+    color: #F1FAEE;
+    margin: 0 5px;
+    border-radius: 5px;
+`
 
 export default class FormularioCadastro extends React.Component {
   state = {
@@ -121,7 +134,7 @@ export default class FormularioCadastro extends React.Component {
         </FormControl>
         <br></br>
         <div className="check">
-          <input
+          <Input
            
             onChange={this.props.onChangePagamentos}
             value={"debito"}
@@ -131,7 +144,7 @@ export default class FormularioCadastro extends React.Component {
             checked={this.props.inputPagamento.includes("debito")}
           />
           Cartão de Débito
-          <input
+          <Input
             onChange={this.props.onChangePagamentos}
             value={"credito"}
             type="checkbox"
@@ -140,7 +153,7 @@ export default class FormularioCadastro extends React.Component {
             checked={this.props.inputPagamento.includes("credito")}
           />
           Cartão de Crédito
-          <input
+          <Input
             onChange={this.props.onChangePagamentos}
             value={"paypal"}
             type="checkbox"
@@ -149,7 +162,7 @@ export default class FormularioCadastro extends React.Component {
             checked={this.props.inputPagamento.includes("paypal")}
           />
           Paypal
-          <input
+          <Input
             onChange={this.props.onChangePagamentos}
             value={"boleto"}
             type="checkbox"
@@ -158,7 +171,7 @@ export default class FormularioCadastro extends React.Component {
             checked={this.props.inputPagamento.includes("boleto")}
           />
           Boleto
-          <input
+          <Input
             onChange={this.props.onChangePagamentos}
             value={"pix"}
             type="checkbox"
@@ -176,7 +189,7 @@ export default class FormularioCadastro extends React.Component {
           onChange={this.onChangeDate}
         />
         <br></br>
-        <button onClick={this.cadastrarServico}>Cadastrar Serviço</button>
+        <Button onClick={this.cadastrarServico}>Cadastrar Serviço</Button>
         <br></br>
         <br></br>
         <br></br>
